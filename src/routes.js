@@ -5,6 +5,7 @@ const router = express.Router()
 const produtoController = require('./controllers/produtoController')
 
 router.get('/produtos', produtoController.buscarTodos)
+router.get('/produtos/:codigo', produtoController.buscarUm)
 
 const produto = require('./controllers/produtoController')
 
