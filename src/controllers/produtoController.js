@@ -73,5 +73,11 @@ module.exports = {
         }
 
         res.json(json)
+    },
+    deletar: async (req, res)=>{
+        let json = {error: '', result:{}}
+        
+        await produtoService.deletar(req.params.codigo)
+        res.json(json)
     }
 }

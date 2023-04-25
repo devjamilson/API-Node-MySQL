@@ -51,5 +51,16 @@ module.exports = {
                 aceito(results)
             })
         })
+    },
+    deletar: (codigo) =>{
+        return new Promise((aceito, rejeitado)=>{
+            db.query('DELETE FROM produtos WHERE codigo = ?',[codigo], (err, results)=>{
+                if(err){ 
+                    rejeitado(err) 
+                    return 
+                }
+                aceito(results)
+            })
+        })
     }
 }
