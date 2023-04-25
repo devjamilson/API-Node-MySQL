@@ -28,5 +28,16 @@ module.exports = {
                 }
             })
         })
+    },
+    inserir: (nome, descricao, valor)=>{
+        return new Promise((aceito, rejeitado)=>{
+            db.query('INSERT INTO produtos (nome, descricao, valor) VALUES (?, ?, ?)', [nome, descricao, valor], (error, results)=>{
+                if(error) {
+                    rejeitado(error) 
+                    return
+                }
+                aceito(results.insertCodigo)
+            })
+        })
     }
 }

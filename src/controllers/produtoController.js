@@ -27,5 +27,28 @@ module.exports = {
         }
 
         res.json(json)
+    },
+
+    inserir: async (req, res) =>{
+        let json = {error: '', result:{}}
+
+        let nome = req.body.nome
+        let descricao = req.body.descricao
+        let valor = req.body.valor
+
+        if(nome && descricao && valor){
+            let produtoCodigo = await produtoService.inserir(nome, descricao, valor)
+
+            json.result = {
+                codigo: produtoCodigo,
+                nome,
+                descricao,
+                valor
+            }
+        }else{
+            json.error = "Campos não enviados"
+        }
+
+        res.json(json)
     }
 }
