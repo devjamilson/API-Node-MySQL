@@ -50,5 +50,28 @@ module.exports = {
         }
 
         res.json(json)
+    },
+    atualizar: async (req, res) =>{
+        let json = {error: '', result:{}}
+
+        let codigo = req.params.codigo
+        let nome = req.body.nome
+        let descricao = req.body.descricao
+        let valor = req.body.valor
+
+        if(nome && descricao && valor && codigo){
+            await produtoService.atualizar(nome, descricao, valor, codigo)
+
+            json.result = {
+                codigo,
+                nome,
+                descricao,
+                valor
+            }
+        }else{
+            json.error = "Campos não enviados"
+        }
+
+        res.json(json)
     }
 }

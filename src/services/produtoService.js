@@ -40,4 +40,16 @@ module.exports = {
             })
         })
     }
+    ,
+    atualizar: (nome, descricao, valor, codigo)=>{
+        return new Promise((aceito, rejeitado)=>{
+            db.query('UPDATE produtos SET nome = ?, descricao = ?, valor = ? WHERE codigo = ?', [nome, descricao, valor, codigo], (error, results)=>{
+                if(error) {
+                    rejeitado(error) 
+                    return
+                }
+                aceito(results)
+            })
+        })
+    }
 }
